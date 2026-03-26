@@ -190,6 +190,7 @@ const NavBar: React.FC = () => {
   const navLinks = [
     { href: '/', label: 'Home' },
     // { href: '/articles', label: 'Articles', altHref: '/article' },
+    ...(isAuthenticated ? [{ href: '/feed', label: 'Feed', altHref: '/feed' }] : []),
     { href: '/communities', label: 'Communities', altHref: '/community' },
     { href: '/discussions', label: 'Discussions', altHref: '/discussion' },
     ...(isAuthenticated

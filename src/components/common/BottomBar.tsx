@@ -4,7 +4,7 @@ import React, { Suspense, lazy, useState } from 'react';
 
 import { usePathname, useRouter } from 'next/navigation';
 
-import { BookOpenText, Home, Plus, Users } from 'lucide-react';
+import { BookOpenText, Home, Plus, Rss, Users } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { useSubscriptionUnreadStore } from '@/stores/subscriptionUnreadStore';
@@ -33,6 +33,7 @@ const BottomBar = () => {
   const navLinks = [
     { name: 'Home', route: '/', icon: <Home size={20} /> },
     // { name: 'Articles', route: '/articles', altRoute: '/article', icon: <Newspaper size={20} /> },
+    { name: 'Feed', route: '/feed', altRoute: '/feed', icon: <Rss size={20} /> },
     {
       name: 'Communities',
       route: '/communities',
@@ -50,8 +51,9 @@ const BottomBar = () => {
   ];
   const navSlotClassByName: Record<string, string> = {
     Home: 'col-start-1',
-    Communities: 'col-start-3',
-    Discussions: 'col-start-4',
+    Feed: 'col-start-2',
+    Communities: 'col-start-4',
+    Discussions: 'col-start-5',
   };
 
   const hideBottomBarPaths = ['login', 'register', 'forgotpassword', 'resetpassword'];
@@ -78,7 +80,7 @@ const BottomBar = () => {
           What: Repositioned the mobile create (+) action to true screen center.
           Why: A four-column grid places the create button in a column, not at the viewport midpoint.
           How: Keep nav links in assigned grid slots and render create as an absolute centered overlay. */}
-      <main className="fixed bottom-0 left-0 z-[1000] grid h-16 w-screen select-none grid-cols-4 border-t border-common-minimal bg-common-background/70 text-text-secondary backdrop-blur-md md:hidden">
+      <main className="fixed bottom-0 left-0 z-[1000] grid h-16 w-screen select-none grid-cols-5 border-t border-common-minimal bg-common-background/70 text-text-secondary backdrop-blur-md md:hidden">
         {navLinks.map((link, index) => {
           const isActive = isLinkActive(link);
           const isOnDiscussionsPage = pathname?.startsWith('/discussion');
